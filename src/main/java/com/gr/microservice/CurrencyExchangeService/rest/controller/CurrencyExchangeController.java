@@ -23,14 +23,17 @@ public class CurrencyExchangeController {
     CurrencyExchangeRepository repository;
 
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
-    public List<CurrencyExchange> getCurrencyExchangeInfo(@NonNull @PathVariable String from, @NonNull @PathVariable String to) {
+    public CurrencyExchange getCurrencyExchangeInfo(@NonNull @PathVariable String from, @NonNull @PathVariable String to) {
         /*CurrencyExchange currencyExchange = new CurrencyExchange(10001, "USD", "INR", 65.00, "8000 Instance Id");
         String serverPort = environment.getProperty("server.port");
         currencyExchange.setEnvironment(serverPort);
         return currencyExchange;*/
-        List<CurrencyExchange> result = repository.findByFromAndTo(from, to);
-        if(Objects.isNull(result) || result.isEmpty())
+        CurrencyExchange result = repository.findByFromAndTo(from, to);
+        if(Objects.isNull(result))
             throw new RuntimeException("Currency Exchange data is not available from " + from + " , to: " + to);
+
+        String port = environment.getProperty("local.server.port");
+        result.setEnvironment(port);
         return result;
 
     }

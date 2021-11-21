@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "CURRENCY_EXCHANGE")
@@ -15,13 +16,13 @@ public class CurrencyExchange {
     private String from;
     @Column(name = "currency_to")
     private String to;
-    private double conversionMultiple;
+    private BigDecimal conversionMultiple;
     private String environment;
 
     public CurrencyExchange() {
     }
 
-    public CurrencyExchange(long id, String from, String to, double conversionMultiple, String environment) {
+    public CurrencyExchange(long id, String from, String to, BigDecimal conversionMultiple, String environment) {
         this.id = id;
         this.from = from;
         this.to = to;
@@ -53,11 +54,11 @@ public class CurrencyExchange {
         this.to = to;
     }
 
-    public double getConversionMultiple() {
+    public BigDecimal getConversionMultiple() {
         return conversionMultiple;
     }
 
-    public void setConversionMultiple(double conversionMultiple) {
+    public void setConversionMultiple(BigDecimal conversionMultiple) {
         this.conversionMultiple = conversionMultiple;
     }
 

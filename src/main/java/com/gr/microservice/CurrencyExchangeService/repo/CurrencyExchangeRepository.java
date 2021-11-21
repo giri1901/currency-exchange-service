@@ -9,5 +9,5 @@ import java.util.List;
 public interface CurrencyExchangeRepository extends JpaRepository<CurrencyExchange, Long> {
 
     //@Query("from CurrencyExchange C where C.from_currency=:from and C.to_currency=:to")
-    List<CurrencyExchange> findByFromAndTo(String from, String to);
+    CurrencyExchange findByFromAndTo(String from, String to);
 }
