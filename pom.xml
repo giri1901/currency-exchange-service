@@ -44,12 +44,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-sleuth-zipkin</artifactId>	<!-- Enables the tracing capability with zipkin-->
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>	<!-- Enables the distributed tracing capability with zipkin-->
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.amqp</groupId>
-			<artifactId>spring-rabbit</artifactId>	<!-- Enables the tracing capability with zipkin-->
-		</dependency>
+			<artifactId>spring-rabbit</artifactId>	&lt;!&ndash; Enables the distributed async tracing capability with zipkin&ndash;&gt;
+		</dependency>-->
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
 			<artifactId>resilience4j-spring-boot2</artifactId>
@@ -97,6 +97,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>giri1901/{project.artifactId}:{project.version}</name>
+					</image>
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
